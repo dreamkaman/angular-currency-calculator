@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+    --main-font-family: "Roboto", sans-serif;
+    --main-text-color: #ffffff;
+    --header-bg-color: #166BC6;
+    --currency-name-color: #24FF00;
+    --currency-operations-color: #ffbb00;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--main-font-family);
+    color: var(--main-text-color);
+    letter-spacing: 0.04em;
+    max-width: 100%;
+    margin: 0;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    display: block;
+}

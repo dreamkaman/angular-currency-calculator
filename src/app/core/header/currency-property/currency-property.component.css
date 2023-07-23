@@ -1,0 +1,22 @@
+table {
+    border: none;
+    text-align: center;
+    font-size: 20px;
+}
+
+th,
+td {
+    padding: 2px 10px;
+}
+
+th {
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: var(--currency-operations-color)
+}
+
+.currencyName {
+    font-weight: 700;
+    color: var(--currency-name-color);
+}
