@@ -8,5 +8,5 @@ export enum ActionTypes {
 
 export const setCurrenciesAction = createAction(
     ActionTypes.SET_CURRENCIES,
-    props<{ currencies: ICurrencyInfo }>()
+    props<{ currencies: ICurrencyInfo[] }>()
 )

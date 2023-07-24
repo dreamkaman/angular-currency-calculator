@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ICurrencyInfo } from 'src/app/types';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+// import { ICurrencyInfo } from 'src/app/types';
 
 @Component({
   selector: 'app-currency-property',
@@ -7,12 +9,13 @@ import { ICurrencyInfo } from 'src/app/types';
   styleUrls: ['./currency-property.component.css']
 })
 export class CurrencyPropertyComponent implements OnInit {
-  @Input() currencies: ICurrencyInfo[] = [];
-  constructor() { }
+  // currencies!: ICurrencyInfo[];
+
+  constructor(private store: Store<any>) { }
 
 
   ngOnInit(): void {
-
+    console.log(this.store);
   }
 
 }

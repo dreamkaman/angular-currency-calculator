@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment';
     CoreModule,
     PagesModule,
     HttpClientModule,
-    StoreModule.forRoot(currenciesReducer),
+    StoreModule.forRoot({ currencies: currenciesReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production

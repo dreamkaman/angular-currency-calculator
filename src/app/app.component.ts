@@ -1,7 +1,10 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GetCurrenciesService } from './get-currencies.service';
 
 import { ICurrencyInfo } from './types';
+import { ICurrenciesState } from './app.reducer';
+import { Store } from '@ngrx/store';
+import { setCurrenciesAction } from './app.actions';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +14,8 @@ import { ICurrencyInfo } from './types';
 export class AppComponent implements OnInit {
   currencies: ICurrencyInfo[] = [];
 
-  constructor(private getCurrenciesService: GetCurrenciesService) { }
+  constructor(private getCurrenciesService: GetCurrenciesService,
+    private store: Store<ICurrenciesState>) { }
 
   ngOnInit(): void {
     this.getCurrenciesService.getCurrencies().subscribe({
@@ -22,6 +26,7 @@ export class AppComponent implements OnInit {
             currencyItem.currencyCodeA === 840 && currencyItem.currencyCodeB === 978 ||
             currencyItem.currencyCodeA === 978 && currencyItem.currencyCodeB === 840
         });
+        this.store.dispatch(setCurrenciesAction({ currencies: this.currencies }));
       },
       error: (error) => console.log(error)
     });

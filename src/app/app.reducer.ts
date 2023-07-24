@@ -4,17 +4,17 @@ import { setCurrenciesAction } from './app.actions';
 import { ICurrencyInfo } from './types';
 
 export interface ICurrenciesState {
-    currencies: ICurrencyInfo[];
+    data: ICurrencyInfo[];
 }
 export const initialState: ICurrenciesState = {
-    currencies: []
+    data: []
 }
 
 export const currenciesReducer = createReducer(
     initialState,
     on(setCurrenciesAction, (state, payload) => {
-        console.log(state.currencies);
+        console.log(state.data);
         console.log(payload);
-        return { ...initialState };
+        return { data: [...payload.currencies] };
     })
 )
