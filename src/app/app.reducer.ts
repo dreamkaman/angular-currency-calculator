@@ -12,9 +12,8 @@ export const initialState: ICurrenciesState = {
 
 export const currenciesReducer = createReducer(
     initialState,
-    on(setCurrenciesAction, (state, payload) => {
-        console.log(state.data);
-        console.log(payload);
+    on(setCurrenciesAction, (_state, payload) => {
+
         return { data: [...payload.currencies] };
     })
 )
