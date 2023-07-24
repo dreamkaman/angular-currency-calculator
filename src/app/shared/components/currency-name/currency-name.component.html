@@ -1,4 +1,4 @@
-<select class="currencyName" [name]="name" (change)="changeEmitter.emit()">
+<select class="currencyName" [name]="name" (change)="changeEmitter.emit($event)">
     <!--Supplement an id here instead of using 'name'-->
     <option value="UAH" selected>UAH</option>
     <option value="USD">USD</option>

@@ -7,15 +7,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class CurrencyValueComponent implements OnInit {
   @Input() name: string = 'changeName';
-  @Output() inputEmitter: EventEmitter<string> = new EventEmitter();
+  @Input() value!: string;
+  @Input() labelText!: string;
+
+  @Output() inputEmitter: EventEmitter<Event> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
-  // inputHandler() {
-  //   console.log('something inputs!')
-  // }
 
 }

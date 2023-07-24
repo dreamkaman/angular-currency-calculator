@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-converter-form',
@@ -6,25 +6,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./converter-form.component.css']
 })
 export class ConverterFormComponent implements OnInit {
+  @Output() leftCurrency: string = 'UAH';
+  @Output() rightCurrency: string = 'UAH';
+  @Output() leftCurrencyAmount: string = '';
+  @Output() rightCurrencyAmount: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  inputHandlerLeft() {
-    console.log('I am left!');
+  inputHandlerLeft(event: Event): void {
+    this.leftCurrencyAmount = (event.target as HTMLInputElement).value;
+    this.rightCurrencyAmount = this.leftCurrencyAmount;
   }
 
-  inputHandlerRight() {
-    console.log('I am right!');
+  inputHandlerRight(event: Event): void {
+    this.rightCurrencyAmount = (event.target as HTMLInputElement).value;
+    this.leftCurrencyAmount = this.rightCurrencyAmount;
   }
 
-  changeHandlerLeft() {
-    console.log('I am left!')
+  changeHandlerLeft(event: Event): void {
+    this.leftCurrency = (event.target as HTMLSelectElement).value;
   }
 
-  changeHandlerRight() {
-    console.log('I am right!')
+  changeHandlerRight(event: any): void {
+    this.rightCurrency = (event.target as HTMLSelectElement).value;
+  }
+
+  convertCurrency(currencyName1: string, currencyName2: string): number {
+    return 1;
   }
 }

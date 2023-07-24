@@ -2,12 +2,18 @@
     <h2 class="converterTitle">Currency converter</h2>
     <div class="currencies">
         <div class="currencyWrapper">
-            <app-currency-value name="currencyValue1" (inputEmitter)="inputHandlerLeft()"></app-currency-value>
-            <app-currency-name name="currencyName1"></app-currency-name>
+            <app-currency-value name="leftCurrencyAmount" (inputEmitter)="inputHandlerLeft($event)" labelText="I have"
+                [value]="leftCurrencyAmount">
+            </app-currency-value>
+            <app-currency-name name="leftCurrencyName" (changeEmitter)="changeHandlerLeft($event)">
+            </app-currency-name>
         </div>
         <div class="currencyWrapper">
-            <app-currency-value name="currencyValue2" (inputEmitter)="inputHandlerRight()"></app-currency-value>
-            <app-currency-name name="currencyName2"></app-currency-name>
+            <app-currency-value name="rightCurrencyAmount" (inputEmitter)="inputHandlerRight($event)" labelText="I want"
+                [value]="rightCurrencyAmount">
+            </app-currency-value>
+            <app-currency-name name="rightCurrencyName" (changeEmitter)="changeHandlerRight($event)">
+            </app-currency-name>
         </div>
     </div>
 </form>

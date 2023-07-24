@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ICurrencyInfo } from 'src/app/types';
 
 @Component({
   selector: 'app-currency-property',
@@ -6,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./currency-property.component.css']
 })
 export class CurrencyPropertyComponent implements OnInit {
+  @Input() currencies: ICurrencyInfo[] = [];
   constructor() { }
 
+
   ngOnInit(): void {
+
   }
 
 }
