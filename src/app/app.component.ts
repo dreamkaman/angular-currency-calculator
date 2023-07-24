@@ -22,9 +22,7 @@ export class AppComponent implements OnInit {
       next: (currenciesArray) => {
         this.currencies = (currenciesArray).filter((currencyItem) => {
           return currencyItem.currencyCodeA === 840 && currencyItem.currencyCodeB === 980 ||
-            currencyItem.currencyCodeA === 978 && currencyItem.currencyCodeB === 980 ||
-            currencyItem.currencyCodeA === 840 && currencyItem.currencyCodeB === 978 ||
-            currencyItem.currencyCodeA === 978 && currencyItem.currencyCodeB === 840
+            currencyItem.currencyCodeA === 978 && currencyItem.currencyCodeB === 980
         });
         this.store.dispatch(setCurrenciesAction({ currencies: this.currencies }));
       },
