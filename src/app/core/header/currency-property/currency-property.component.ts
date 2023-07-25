@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { IGlobalState } from 'src/app/app.reducer';
-import { eurRateSelector, usdRateSelector } from 'src/app/app.selectors';
+import { eurUahRateSelector, usdUahRateSelector } from 'src/app/app.selectors';
 
 import { ICurrencyInfo } from 'src/app/types';
 
@@ -25,8 +25,8 @@ export class CurrencyPropertyComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.usdRate$ = this.store.select(usdRateSelector);
-    this.eurRate$ = this.store.pipe(select(eurRateSelector));
+    this.usdRate$ = this.store.select(usdUahRateSelector);
+    this.eurRate$ = this.store.pipe(select(eurUahRateSelector));
   }
 
 }

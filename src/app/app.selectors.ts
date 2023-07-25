@@ -3,28 +3,17 @@ import { IGlobalState } from "./app.reducer";
 
 export const selectCurrencies = (state: IGlobalState) => state;
 
-export const usdRateSelector = createSelector(
+export const usdUahRateSelector = createSelector(
     selectCurrencies,
-    state => {
-        console.log(state);
-        const result = state?.currencies.data.find(currencyInfo => currencyInfo.currencyCodeA === 840);
-
-        console.log(result);
-        return result;
-
-    }
+    state => state?.currencies.data.find(currencyInfo => currencyInfo.currencyCodeA === 840)
 )
 
-export const eurRateSelector = createSelector(
+export const eurUahRateSelector = createSelector(
     selectCurrencies,
     state => state?.currencies.data.find(currencyInfo => currencyInfo.currencyCodeA === 978)
 )
 
-export const allSelector = createSelector(
+export const eurUsdRateSelector = createSelector(
     selectCurrencies,
-    state => {
-        console.log(state);
-        return state
-    }
-
+    state => state?.currencies.data.find(currencyInfo => currencyInfo.currencyCodeA === 978 && currencyInfo.currencyCodeB === 840)
 )
