@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ICurrenciesState } from 'src/app/app.reducer';
+import { IGlobalState } from 'src/app/app.reducer';
+import { eurUahRateSelector, eurUsdRateSelector, usdUahRateSelector } from 'src/app/app.selectors';
 
 import { ICurrencyInfo } from 'src/app/types';
 
@@ -17,34 +18,62 @@ export class ConverterFormComponent implements OnInit {
 
   currencies!: ICurrencyInfo[];
 
-  UAH_UAH: number = 1;
-  USD_USD: number = 1;
-  EUR_EUR: number = 1;
-  UAH_USD: number | undefined = this.currencies?.find(currency => currency.currencyCodeA === 840 && currency.currencyCodeB === 980)?.rateSell;
+  UAH_UAH = 1;
+  USD_USD = 1;
+  EUR_EUR = 1;
+  UAH_USD!: number;
+  UAH_EUR!: number;
+  USD_UAH!: number;
+  EUR_UAH!: number;
+  USD_EUR!: number;
+  EUR_USD!: number;
 
-  constructor(private store: Store<ICurrenciesState>) { }
+  constructor(private store: Store<IGlobalState>) { }
 
   ngOnInit(): void {
-    // this.store.select(usdRateSelector).subscribe(value => this.UAH_USD = value?.rateSell);
+    this.store.select(usdUahRateSelector).subscribe({
+      next:
+        info => {
+          this.USD_UAH = info?.rateBuy ?? 0;
+          this.UAH_USD = info?.rateSell ?? 0;
+        },
+      error: error => console.log(error)
+    });
+    this.store.select(eurUahRateSelector).subscribe({
+      next:
+        info => {
+          this.EUR_UAH = info?.rateBuy ?? 0;
+          this.UAH_EUR = info?.rateSell ?? 0;
+        },
+      error: error => console.log(error)
+    });
+
+    this.store.select(eurUsdRateSelector).subscribe({
+      next: info => {
+        this.EUR_USD = info?.rateSell ?? 0;
+        this.USD_EUR = info?.rateBuy ?? 0;
+      }
+    });
   }
 
   inputHandlerLeft(event: Event): void {
     this.leftCurrencyAmount = (event.target as HTMLInputElement).value;
-    this.rightCurrencyAmount = this.leftCurrencyAmount;
+    this.rightCurrencyAmount = (Number(this.leftCurrencyAmount) * this.findCurrencyCrossRate(this.leftCurrency, this.rightCurrency)).toString();
   }
 
   inputHandlerRight(event: Event): void {
     this.rightCurrencyAmount = (event.target as HTMLInputElement).value;
-    this.leftCurrencyAmount = this.rightCurrencyAmount;
+    this.leftCurrencyAmount = (Number(this.rightCurrencyAmount) * this.findCurrencyCrossRate(this.leftCurrency, this.rightCurrency)).toString();
   }
 
   changeHandlerLeft(event: Event): void {
     this.leftCurrency = (event.target as HTMLSelectElement).value;
-    console.log(this.UAH_USD);
+    this.rightCurrencyAmount = (Number(this.leftCurrencyAmount) * this.findCurrencyCrossRate(this.leftCurrency, this.rightCurrency)).toString();
   }
 
   changeHandlerRight(event: any): void {
     this.rightCurrency = (event.target as HTMLSelectElement).value;
+    this.leftCurrencyAmount = (Number(this.rightCurrencyAmount) * this.findCurrencyCrossRate(this.leftCurrency, this.rightCurrency)).toString();
   }
 
   convertCurrencyNameToCode(currencyName: string): number {
@@ -56,7 +85,29 @@ export class ConverterFormComponent implements OnInit {
     }
   }
 
-  findCurrencyRate(): number {
-    return 1
+  findCurrencyCrossRate(currencyNameLeft: string, currencyNameRight: string): number {
+    if (currencyNameLeft === currencyNameRight) {
+      return 1;
+    }
+    if (currencyNameLeft == 'USD' && currencyNameRight === 'UAH') {
+      return this.USD_UAH;
+    }
+    if (currencyNameLeft == 'EUR' && currencyNameRight === 'UAH') {
+      return this.EUR_UAH;
+    }
+    if (currencyNameLeft == 'UAH' && currencyNameRight === 'USD') {
+      return this.UAH_USD;
+    }
+    if (currencyNameLeft == 'UAH' && currencyNameRight === 'EUR') {
+      return this.UAH_EUR;
+    }
+    if (currencyNameLeft == 'EUR' && currencyNameRight === 'USD') {
+      return this.EUR_USD;
+    }
+    if (currencyNameLeft == 'USD' && currencyNameRight === 'EUR') {
+      return this.USD_EUR;
+    }
+
+    return 0;
   }
 }
