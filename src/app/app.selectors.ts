@@ -1,9 +1,30 @@
 import { createSelector } from "@ngrx/store";
-import { ICurrenciesState } from "./app.reducer";
+import { IGlobalState } from "./app.reducer";
 
-export const selectCurrencies = (state: ICurrenciesState) => state.data;
+export const selectCurrencies = (state: IGlobalState) => state;
 
 export const usdRateSelector = createSelector(
     selectCurrencies,
-    state => state?.find((currencyInfo) => currencyInfo.currencyCodeA === 840)
+    state => {
+        console.log(state);
+        const result = state?.currencies.data.find(currencyInfo => currencyInfo.currencyCodeA === 840);
+
+        console.log(result);
+        return result;
+
+    }
+)
+
+export const eurRateSelector = createSelector(
+    selectCurrencies,
+    state => state?.currencies.data.find(currencyInfo => currencyInfo.currencyCodeA === 978)
+)
+
+export const allSelector = createSelector(
+    selectCurrencies,
+    state => {
+        console.log(state);
+        return state
+    }
+
 )

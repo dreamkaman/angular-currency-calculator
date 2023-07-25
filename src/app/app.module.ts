@@ -23,7 +23,7 @@ import { environment } from 'src/environments/environment';
     StoreModule.forRoot({ currencies: currenciesReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-      logOnly: environment.production
+      // logOnly: environment.production
     }),
   ],
   providers: [],

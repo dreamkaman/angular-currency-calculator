@@ -7,11 +7,11 @@
     <tr>
         <td class="currencyName">USD</td>
         <td>{{(usdRate$|async)?.rateBuy}}</td>
-        <td>usdSell</td>
+        <td>{{(usdRate$|async)?.rateSell}}</td>
     </tr>
     <tr>
         <td class="currencyName">EUR</td>
-        <td>40.55</td>
-        <td>41.55</td>
+        <td>{{(eurRate$|async)?.rateBuy}}</td>
+        <td>{{(eurRate$|async)?.rateSell}}</td>
     </tr>
 </table>
