@@ -63,7 +63,7 @@ export class ConverterFormComponent implements OnInit {
 
   inputHandlerRight(event: Event): void {
     this.rightCurrencyAmount = (event.target as HTMLInputElement).value;
-    this.leftCurrencyAmount = (Number(this.rightCurrencyAmount) * this.findCurrencyCrossRate(this.leftCurrency, this.rightCurrency)).toString();
+    this.leftCurrencyAmount = (Number(this.rightCurrencyAmount) / this.findCurrencyCrossRate(this.leftCurrency, this.rightCurrency)).toString();
   }
 
   changeHandlerLeft(event: Event): void {
@@ -73,7 +73,7 @@ export class ConverterFormComponent implements OnInit {
 
   changeHandlerRight(event: any): void {
     this.rightCurrency = (event.target as HTMLSelectElement).value;
-    this.leftCurrencyAmount = (Number(this.rightCurrencyAmount) * this.findCurrencyCrossRate(this.leftCurrency, this.rightCurrency)).toString();
+    this.leftCurrencyAmount = (Number(this.rightCurrencyAmount) / this.findCurrencyCrossRate(this.leftCurrency, this.rightCurrency)).toString();
   }
 
   convertCurrencyNameToCode(currencyName: string): number {
@@ -96,16 +96,16 @@ export class ConverterFormComponent implements OnInit {
       return this.EUR_UAH;
     }
     if (currencyNameLeft == 'UAH' && currencyNameRight === 'USD') {
-      return this.UAH_USD;
+      return 1 / this.UAH_USD;
     }
     if (currencyNameLeft == 'UAH' && currencyNameRight === 'EUR') {
-      return this.UAH_EUR;
+      return 1 / this.UAH_EUR;
     }
     if (currencyNameLeft == 'EUR' && currencyNameRight === 'USD') {
       return this.EUR_USD;
     }
     if (currencyNameLeft == 'USD' && currencyNameRight === 'EUR') {
-      return this.USD_EUR;
+      return 1 / this.USD_EUR;
     }
 
     return 0;
