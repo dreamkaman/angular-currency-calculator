@@ -9,7 +9,8 @@ import { setCurrenciesAction } from './app.actions';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [GetCurrenciesService]
 })
 export class AppComponent implements OnInit {
   currencies: ICurrencyInfo[] = [];
