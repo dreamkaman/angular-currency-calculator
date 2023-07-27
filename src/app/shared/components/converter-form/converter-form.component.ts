@@ -13,8 +13,8 @@ import { ICurrencyInfo } from 'src/app/types';
 export class ConverterFormComponent implements OnInit {
   @Output() leftCurrency: string = 'UAH';
   @Output() rightCurrency: string = 'UAH';
-  @Output() leftCurrencyAmount: string = '';
-  @Output() rightCurrencyAmount: string = '';
+  @Output() leftCurrencyAmount: string = '1';
+  @Output() rightCurrencyAmount: string = '1';
 
   currencies!: ICurrencyInfo[];
 
