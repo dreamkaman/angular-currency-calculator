@@ -1,5 +1,5 @@
 import { createSelector } from "@ngrx/store";
-import { IGlobalState } from "./app.reducer";
+import { IGlobalState } from "../reducers/app.reducer";
 
 export const selectCurrencies = (state: IGlobalState) => state;
 

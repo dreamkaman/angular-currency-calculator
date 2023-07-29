@@ -5,13 +5,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './currency-name.component.html',
   styleUrls: ['./currency-name.component.css']
 })
-export class CurrencyNameComponent implements OnInit {
+export class CurrencyNameComponent {
   @Input() name: string = 'changeName';
   @Output() changeEmitter: EventEmitter<Event> = new EventEmitter();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

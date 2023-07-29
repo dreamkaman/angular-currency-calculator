@@ -1,9 +1,9 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { IGlobalState } from 'src/app/app.reducer';
-import { eurUahRateSelector, eurUsdRateSelector, usdUahRateSelector } from 'src/app/app.selectors';
+import { IGlobalState } from 'src/app/store/reducers/app.reducer';
+import { eurUahRateSelector, eurUsdRateSelector, usdUahRateSelector } from 'src/app/store/selectors/app.selectors';
 
-import { ICurrencyInfo } from 'src/app/types';
+import { ICurrencyInfo } from 'src/app/models/types';
 
 @Component({
   selector: 'app-converter-form',
@@ -74,15 +74,6 @@ export class ConverterFormComponent implements OnInit {
   changeHandlerRight(event: any): void {
     this.rightCurrency = (event.target as HTMLSelectElement).value;
     this.leftCurrencyAmount = (Number(this.rightCurrencyAmount) / this.findCurrencyCrossRate(this.leftCurrency, this.rightCurrency)).toString();
-  }
-
-  convertCurrencyNameToCode(currencyName: string): number {
-    switch (currencyName) {
-      case 'USD': return 840;
-      case 'EUR': return 978;
-
-      default: return 980;
-    }
   }
 
   findCurrencyCrossRate(currencyNameLeft: string, currencyNameRight: string): number {

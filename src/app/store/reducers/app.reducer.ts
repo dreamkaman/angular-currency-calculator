@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { setCurrenciesAction } from './app.actions';
-import { ICurrencyInfo } from './types';
+import { setCurrenciesAction } from '../actions/app.actions';
+import { ICurrencyInfo } from '../../models/types';
 
 export interface IGlobalState {
     currencies: ICurrenciesState,

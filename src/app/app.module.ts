@@ -8,12 +8,12 @@ import { PagesModule } from './pages/pages.module';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 
-import { currenciesReducer } from './app.reducer';
+import { currenciesReducer } from './store/reducers/app.reducer';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
