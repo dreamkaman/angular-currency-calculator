@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { GetCurrenciesService } from './get-currencies.service';
+import { GetCurrenciesService } from './services/getCurrencyService/get-currencies.service';
 
-import { ICurrencyInfo } from './types';
-import { ICurrenciesState } from './app.reducer';
+import { ICurrencyInfo } from './models/types';
+import { ICurrenciesState } from './store/reducers/app.reducer';
 import { Store } from '@ngrx/store';
-import { setCurrenciesAction } from './app.actions';
+import { setCurrenciesAction } from './store/actions/app.actions';
 
 @Component({
   selector: 'app-root',
